@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateProductOrdersTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('product_orders', function (Blueprint $table) {
+            $table->id();
+            $table->string('uuid')->unique();
+            $table->string('user_uuid');
+            $table->string('product_uuid');
+            $table->string('merchant_uuid');
+            $table->double('price', 8, 2);
+            $table->integer('quantity');
+            $table->string('order_code');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('product_orders');
+    }
+}
